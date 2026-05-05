@@ -1,0 +1,22 @@
+# Environnements Python
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Données et modèles locaux
+data/
+models/
+*.pkl
+*.joblib
+artifacts/*.joblib
+
+# Secrets
+.env
+*.key
+
+# Système / IDE
+.vscode/
+.DS_Store
+.ruff_cache/
