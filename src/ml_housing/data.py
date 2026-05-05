@@ -1,5 +1,5 @@
-from sklearn.datasets import fetch_california_housing
 import pandas as pd
+from sklearn.datasets import fetch_california_housing
 
 
 def load_housing_data() -> pd.DataFrame:
