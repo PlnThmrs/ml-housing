@@ -39,7 +39,6 @@ def client(mock_model, mock_preprocessing):
         patch("app.get_latest_model", return_value=mock_model),
         patch("app.get_latest_preprocessing", return_value=mock_preprocessing),
     ):
-
         # Réimporter l'app pour s'assurer que les dépendances sont injectées
         import app as app_module
 
