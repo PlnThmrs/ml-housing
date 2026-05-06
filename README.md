@@ -1,3 +1,5 @@
+[![CI - Python Quality Checks](https://github.com/PlnThmrs/ml-housing/actions/workflows/ci.yml/badge.svg)](https://github.com/PlnThmrs/ml-housing/actions/workflows/ci.yml)
+
 # ML - Housing Project
 Construction d'une page HTML avec prédiction par régression linéaire du prix d'une maison californienne
 
