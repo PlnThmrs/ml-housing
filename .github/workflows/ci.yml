@@ -2,9 +2,9 @@ name: CI - Python Quality Checks
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   # 1. Vérification du Linting (Ruff)
