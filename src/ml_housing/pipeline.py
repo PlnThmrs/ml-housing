@@ -7,6 +7,7 @@ from src.ml_housing.config import MODEL_FILENAME, RANDOM_STATE, TEST_SIZE
 from src.ml_housing.data import load_housing_data
 from src.ml_housing.evaluate import evaluate_model
 from src.ml_housing.features import split_features_target, split_train_test
+from src.ml_housing.preprocessing import get_preprocessing_pipeline
 from src.ml_housing.train import train_model
 
 
@@ -23,6 +24,10 @@ def run_pipeline(artifacts_dir: str = "artifacts") -> dict:
         test_size=TEST_SIZE,
         random_state=RANDOM_STATE,
     )
+
+    preprocessing_pipeline = get_preprocessing_pipeline()
+    X_train = preprocessing_pipeline.fit_transform(X_train)
+    X_test = preprocessing_pipeline.transform(X_test)
 
     model = train_model(X_train, y_train)
     metrics = evaluate_model(model, X_test, y_test)
