@@ -8,6 +8,7 @@ __pycache__/
 # Données et modèles locaux
 data/
 models/
+preprocessing/
 *.pkl
 *.joblib
 artifacts/*.joblib
