@@ -78,6 +78,7 @@ jobs:
       - name: Build Backend and Frontend Images
         run: |
           mkdir -p artifacts/models
+          mkdir -p artifacts/preprocessing
           touch artifacts/models/model_latest.joblib
           touch artifacts/preprocessing/preprocessing_latest.joblib
           docker build -t housing-backend -f backend/Dockerfile .
@@ -87,7 +88,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: [docker-build] # Dépend du succès du build Docker
-    if: github.ref == 'refs/heads/develop' # Ne s'exécute que sur la branche develop
+    if: github.ref == 'refs/heads/develop' # Se déclenche uniquement sur la branche develop
     steps:
       - uses: actions/checkout@v4
       - name: Log in to GitHub Container Registry
