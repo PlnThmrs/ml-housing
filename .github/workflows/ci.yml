@@ -97,11 +97,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: set lower case owner name
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.actor }}'
+
       - name: Tag and Push Staging Images
         run: |
           # Re-build les images avec le tag GHCR pour le push
-          docker build -t ghcr.io/${{ github.repository }}/backend:staging -f backend/Dockerfile .
-          docker build -t ghcr.io/${{ github.repository }}/frontend:staging -f frontend/Dockerfile .
-          docker push ghcr.io/${{ github.repository }}/backend:staging
-          docker push ghcr.io/${{ github.repository }}/frontend:staging
+          docker build -t ghcr.io/$OWNER_LC/backend:staging -f backend/Dockerfile .
+          docker build -t ghcr.io/$OWNER_LC/frontend:staging -f frontend/Dockerfile .
+          docker push ghcr.io/$OWNER_LC/backend:staging
+          docker push ghcr.io/$OWNER_LC/frontend:staging
 
