@@ -3,12 +3,12 @@ from pathlib import Path
 
 import joblib
 
-from src.ml_housing.config import MODEL_FILENAME, RANDOM_STATE, TEST_SIZE
-from src.ml_housing.data import load_housing_data
-from src.ml_housing.evaluate import evaluate_model
-from src.ml_housing.features import split_features_target, split_train_test
-from src.ml_housing.preprocessing import get_preprocessing_pipeline
-from src.ml_housing.train import train_model
+from src.common.features import split_features_target, split_train_test
+from src.prediction.config import MODEL_FILENAME, RANDOM_STATE, TEST_SIZE
+from src.training.data import load_housing_data
+from src.training.evaluate import evaluate_model
+from src.training.preprocessing import get_preprocessing_pipeline
+from src.training.train import train_model
 
 
 def run_pipeline(artifacts_dir: str = "artifacts") -> dict:

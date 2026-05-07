@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestRegressor
 
-from .config import RANDOM_STATE
+from ..prediction.config import RANDOM_STATE
 
 
 def train_model(X_train, y_train) -> RandomForestRegressor:
