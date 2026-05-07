@@ -46,7 +46,6 @@ def client(mock_model, mock_preprocessing):
             return_value=mock_preprocessing,
         ),
     ):
-
         import app
 
         # On recharge le module pour s'assurer que les variables globales
