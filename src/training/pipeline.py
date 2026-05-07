@@ -4,7 +4,7 @@ from pathlib import Path
 import joblib
 
 from src.common.features import split_features_target, split_train_test
-from src.prediction.config import MODEL_FILENAME, RANDOM_STATE, TEST_SIZE
+from src.training.config import MODEL_FILENAME, RANDOM_STATE, TEST_SIZE
 from src.training.data import load_housing_data
 from src.training.evaluate import evaluate_model
 from src.training.preprocessing import get_preprocessing_pipeline
