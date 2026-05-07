@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from .config import RANDOM_STATE, TEST_SIZE
+from ..training.config import RANDOM_STATE, TEST_SIZE
 
 TARGET_COLUMN = "MedHouseVal"
 

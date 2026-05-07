@@ -8,15 +8,9 @@ Construction d'une page HTML avec prédiction par régression linéaire du prix 
 - Outil de lecture de fichier .ipynb (VS Code, Jupyter, etc)
 
 ## Etapes
-- Ouvrir le dossier dans Powershell et créer l'environnement virtuel: `py -3.10 -m venv .venv`
-- Activer l'environnement virtuel : `.venv\Scripts\activate`
-- Mettre à jour pip : `python -m pip install --upgrade pip`
-- Installer les dépendences : `python -m pip install -r requirements.txt`
-- Ouvrir le notebook et choisir le kernel associé au venv
-- Lancer le notebook pour créer le modèle, le script de preprocessing et les métriques
-- Lancer le backend : `uvicorn backend.app:app --reload`
-- Dans une autre fenêtre Powershell, lancer le frontend : `streamlit run frontend/streamlit_app.py`
-- L'application ouvre une page web en local, le modèle de régression linéaire peut être utilisé
+- Lancer Docker Desktop
+- Ouvrir le dossier dans Powershell
+- Lancer l'image Docker : `docker compose up --build`
 
 ## Exemple d'utilisation
 - Revenu médian : 5.64

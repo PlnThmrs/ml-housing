@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from src.ml_housing.preprocessing import get_preprocessing_pipeline
+from src.training.preprocessing import get_preprocessing_pipeline
 
 
 def test_get_preprocessing_pipeline_returns_pipeline():

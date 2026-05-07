@@ -1,4 +1,4 @@
-from src.ml_housing.data import load_housing_data
+from src.training.data import load_housing_data
 
 
 def test_load_housing_data_not_empty():
