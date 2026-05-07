@@ -79,7 +79,7 @@ jobs:
         run: |
           mkdir -p artifacts/models
           touch artifacts/models/model_latest.joblib
-          touch artifacts/models/preprocessing_latest.joblib
+          touch artifacts/preprocessing/preprocessing_latest.joblib
           docker build -t housing-backend -f backend/Dockerfile .
           docker build -t housing-frontend -f frontend/Dockerfile .
 
