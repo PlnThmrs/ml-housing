@@ -25,8 +25,7 @@ COPY --from=builder /install /usr/local
 COPY src/common/ ./src/common/
 COPY src/prediction/ ./src/prediction/
 COPY backend/ ./backend/
-COPY artifacts/models/model_latest.joblib ./artifacts/models/
-COPY artifacts/preprocessing/preprocessing_latest.joblib ./artifacts/preprocessing/
+COPY backend/storage/ ./backend/storage/
 
 # Configuration pour que Python trouve le module 'src' correctement
 ENV PYTHONPATH=/app

@@ -4,3 +4,6 @@ pytest
 ruff
 joblib
 pandas
+scikit-learn
+boto3
+python-dotenv
