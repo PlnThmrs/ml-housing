@@ -17,7 +17,6 @@ def mock_model():
     """Fixture pour créer un faux modèle."""
     model = MagicMock()
     # On simule la méthode predict.
-    # Note : si ton script src.prediction.predict appelle model.predict
     model.predict.return_value = np.array([2.5])
     return model
 
@@ -37,14 +36,20 @@ def mock_preprocessing():
 def client(mock_model, mock_preprocessing):
     """Fixture pour créer un client de test FastAPI avec injection de mocks."""
 
-    # 1. On patch les fonctions de chargement AVANT d'importer l'app
-    # On cible l'endroit où elles sont définies ou importées dans app.py
+    # Patch les fonctions de téléchargement et joblib.load
+    fake_model_path = "/fake/model/path"
+    fake_preprocessing_path = "/fake/preprocessing/path"
+
     with (
-        patch("src.prediction.model_loader.get_latest_model", return_value=mock_model),
         patch(
-            "src.prediction.preprocessing_loader.get_latest_preprocessing",
-            return_value=mock_preprocessing,
+            "backend.storage.s3_client.download_model_from_s3",
+            return_value=fake_model_path,
         ),
+        patch(
+            "backend.storage.s3_client.download_preprocessing_from_s3",
+            return_value=fake_preprocessing_path,
+        ),
+        patch("joblib.load", side_effect=[mock_model, mock_preprocessing]),
     ):
         import app
 
@@ -82,8 +87,9 @@ def test_predict_endpoint_with_valid_data(client, mock_preprocessing, mock_model
     assert response.status_code == 200
     data = response.json()
 
-    # On vérifie la structure de la réponse (ajuste selon ton script predict.py)
-    assert "prediction" in data or isinstance(data, (float, int, list, dict))
+    # Vérifie que la réponse contient une prédiction
+    assert "prediction" in data
+    assert isinstance(data["prediction"], float)
 
 
 @pytest.mark.parametrize(

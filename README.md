@@ -14,11 +14,11 @@ Construction d'une page HTML avec prédiction par régression linéaire du prix 
 
 ## Exemple d'utilisation
 - Revenu médian : 5.64
-- Population du quartier : 558
 - Age médian des maisons : 52
-- Occupation moyenne : 2.55
 - Nombre moyen de pièces : 5.82
-- Latitude : 37.85
 - Nombre moyen de chambres : 1.07
+- Population du quartier : 558
+- Occupation moyenne : 2.55
+- Latitude : 37.85
 - Longitude : -122.25
 > **Prix estimé** : 354,399$

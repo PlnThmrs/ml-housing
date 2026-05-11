@@ -3,10 +3,13 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    env_file:
+      - .env
     ports:
       - "8000:8000"
-    volumes:
-      - ./artifacts:/app/artifacts
+    depends_on:
+      - minio
+    
 
   frontend:
     build:
@@ -18,3 +21,19 @@ services:
       - BACKEND_URL=http://backend:8000
     depends_on:
       - backend
+
+  minio:
+    image: minio/minio:latest
+    container_name: ml_housing_minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  minio_data:

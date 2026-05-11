@@ -1,17 +1,32 @@
+import joblib
 from fastapi import FastAPI
 
-from src.prediction.model_loader import get_latest_model
+from backend.storage.s3_client import (
+    download_model_from_s3,
+    download_preprocessing_from_s3,
+)
 from src.prediction.predict import predict
-from src.prediction.preprocessing_loader import get_latest_preprocessing
 
 app = FastAPI()
 
 # Cache variables
-_model = None
-_preprocessing = None
+model = None
+preprocessing = None
 
-model = get_latest_model(_model)
-preprocessing = get_latest_preprocessing(_preprocessing)
+
+@app.on_event("startup")
+def load_artifacts_on_startup():
+    """Télécharge modèle et prétraitement depuis MinIO puis les charge en mémoire."""
+
+    global model, preprocessing
+
+    model_path = download_model_from_s3()
+    model = joblib.load(model_path)
+    print(f"Modèle chargé en mémoire depuis : {model_path}")
+
+    preprocessing_path = download_preprocessing_from_s3()
+    preprocessing = joblib.load(preprocessing_path)
+    print(f"Prétraitement chargé en mémoire depuis : {preprocessing_path}")
 
 
 @app.get("/health")
