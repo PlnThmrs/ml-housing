@@ -7,9 +7,6 @@ from backend.storage.s3_client import (
 )
 from src.prediction.predict import predict
 
-# from src.prediction.model_loader import get_latest_model
-# from src.prediction.preprocessing_loader import get_latest_preprocessing
-
 app = FastAPI()
 
 # Cache variables
